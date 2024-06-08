@@ -1,4 +1,4 @@
-# BEFORE YOU START, REPLACE THE "***" WITH THE ACCESSION NUMBER OF THE METAGENOMIC FILE
+# __BEFORE YOU START, REPLACE THE "***" WITH THE ACCESSION NUMBER OF THE METAGENOMIC FILE__
 
 #1. Download raw metagenomic data from NCBI SRA using prefetch from the SRA Toolkit
 srr_id="***"
