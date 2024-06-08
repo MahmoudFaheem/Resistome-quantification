@@ -1,5 +1,5 @@
 # Resistome-quantification
-*BEFORE YOU START, YOU SHOULD REPLACE THE "***", WHICH LIES AT THE TOP OF THE SCRIPT, WITH THE ACCESSION NUMBER OF THE METAGENOMIC FILE ON THE NCBI SRA DATABASE.*
+~BEFORE YOU START, YOU SHOULD REPLACE THE "***", WHICH LIES AT THE TOP OF THE SCRIPT, WITH THE ACCESSION NUMBER OF THE METAGENOMIC FILE ON THE NCBI SRA DATABASE.~
 
 Your system should also have some software and tools downloaded such as SRA ToolKit, fastq-dump, reformat from the BBmap suite, Bowtie2, Samtools, Bedtools, and Diamond. In addition, the CARD database is a prerequisite, or any other database you prefer to use as your reference.
 
