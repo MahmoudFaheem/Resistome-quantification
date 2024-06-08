@@ -1,10 +1,13 @@
-#1. Download raw metagenomic data from NCBI SRA using prefetch from the SRA Toolkit, this gives a raw file with SRA format.
+# BEFORE YOU START, REPLACE THE "***" WITH THE ACCESSION NUMBER OF THE METAGENOMIC FILE
+
+#1. Download raw metagenomic data from NCBI SRA using prefetch from the SRA Toolkit
 srr_id="***"
 R1="${srr_id}_pass_1.fastq.gz"
 R2="${srr_id}_pass_2.fastq.gz"
 
 prefetch ${srr_id}
-#2. Convert the SRA file to Fastq format using fastq-dump. The output is generated in fastq folder, for paied-end fastq file, R1 and R2 files will be generated.
+
+#2. Convert the SRA file to Fastq format using fastq-dump. The output is generated in a fastq folder, for paired-end fastq files, R1 and R2 files will be generated.
 fastq-dump --outdir fastq --gzip --skip-technical --readids --read-filter pass --dumpbase --split-3 --clip ~/${srr_id}/${srr_id}.sra
 
 #4. Use reformat from the BBmap suite to interleave the generated forward and reverse fastq files, R_1 and R_2, and generates a single interleaved fastq file for further analysis.
