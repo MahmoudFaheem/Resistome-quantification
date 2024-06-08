@@ -20,7 +20,7 @@ bowtie2 -x reference_index -U ~/interleaved${srr_id}.fq.gz -S ~/aligned${srr_id}
 samtools view -bS ~/aligned${srr_id}.sam | samtools sort -o ~/sorted${srr_id}.bam
 samtools index ~/sorted${srr_id}.bam
 
-#7. Convert BAM to FASTA
+#7. Convert BAM to FASTQ
 bedtools bamtofastq -i sorted${srr_id}.bam -fq sorted${srr_id}.fastq.gz
 
 #8. A single-line script to extract the gene name only and make the header tab-separated, it also creates a new column called "Gene_Count" and assigns a value of +1 to each gene every time it appears. It provides four files, diamond, awk_diamond, gene_sums [showing the number of occurrences for each unique gene], and gene_counts [which is just the total number of all genes combined]:
