@@ -3,6 +3,7 @@ srr_id="***"
 R1="${srr_id}_pass_1.fastq.gz"
 R2="${srr_id}_pass_2.fastq.gz"
 
+prefetch ${srr_id}
 #2. Convert the SRA file to Fastq format using fastq-dump. The output is generated in fastq folder, for paied-end fastq file, R1 and R2 files will be generated.
 fastq-dump --outdir fastq --gzip --skip-technical --readids --read-filter pass --dumpbase --split-3 --clip ~/${srr_id}/${srr_id}.sra
 
