@@ -37,6 +37,6 @@ Follow the steps below to use the Resistome Quantification Pipeline:
 ### Step 1: Clone Repository
 
 Clone the repository to your local machine and navigate to the project directory:
-
+```bash
 git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
 cd Resistome-quantification
