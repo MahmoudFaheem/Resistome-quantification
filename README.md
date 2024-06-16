@@ -25,17 +25,17 @@ git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
 cd Resistome-quantification
 
 
-*### Step 2: Update SRA ID*
+__### Step 2: Update SRA ID__
 Replace *** with your actual SRA ID in the metagenomics.yml file.
 
-*### Step 3: Commit Changes*
+__### Step 3: Commit Changes__
 ```bash
 git add .
 git commit -m "Update SRA ID"
 git push origin main
 
-*### Step 4: Trigger Workflow Manually:*
-*Run the following command in your terminal to trigger the workflow manually:*
+__### Step 4: Trigger Workflow Manually:__
+__Run the following command in your terminal to trigger the workflow manually:__
 ```bash
 curl -X POST -u mahmoudfaheem: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 \
   -H "Accept: application/vnd.github.v3+json" \
