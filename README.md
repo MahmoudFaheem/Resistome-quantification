@@ -11,3 +11,34 @@ Your system should also have some software and tools downloaded such as SRA Tool
 6. Convert BAM (the Binary format) to FASTQ format.
 7. Quantify the resistome using DIAMOND and the data-driven scripting language, AWK.
    
+##################################################################################################
+
+# Metagenomics Pipeline
+
+This pipeline automates the processing of metagenomic data using GitHub Actions.
+
+## Usage
+
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
+cd Resistome-quantification
+
+*### Step 2: Update SRA ID*
+Replace *** with your actual SRA ID in the metagenomics.yml file.
+
+*### Step 3: Commit Changes*
+```bash
+git add .
+git commit -m "Update SRA ID"
+git push origin main
+
+*### Step 4: Trigger Workflow Manually:*
+*Run the following command in your terminal to trigger the workflow manually:*
+curl -X POST -u mahmoudfaheem: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 \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/mahmoudfaheem/Resistome-quantification/actions/workflows/metagenomics.yml/dispatches \
+  -d '{"ref":"main"}'
+
+
+
