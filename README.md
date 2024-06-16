@@ -13,34 +13,39 @@ Your system should also have some software and tools downloaded such as SRA Tool
    
 ##################################################################################################
 
-# Metagenomics Pipeline
+# How to Use the Resistome Quantification Pipeline
 
-This pipeline automates the processing of metagenomic data using GitHub Actions.
+## Step 1: Clone Repository
 
-## Usage
+Clone the repository to your local machine and navigate to the project directory:
 
-### Step 1: Clone Repository
 ```bash
 git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
 cd Resistome-quantification
 
+__## Step 2: Update SRA ID__
 
-__### Step 2: Update SRA ID__
 Replace *** with your actual SRA ID in the metagenomics.yml file.
 
-__### Step 3: Commit Changes__
-```bash
+__## Step 3: Commit Changes__
+
+Commit the changes to update the SRA ID:
+
+bash
+
 git add .
 git commit -m "Update SRA ID"
 git push origin main
 
-__### Step 4: Trigger Workflow Manually:__
-__Run the following command in your terminal to trigger the workflow manually:__
-```bash
+
+## Step 4: Trigger Workflow Manually
+
+Run the following command in your terminal to trigger the workflow manually:
+
+bash
+
 curl -X POST -u mahmoudfaheem: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 \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/mahmoudfaheem/Resistome-quantification/actions/workflows/metagenomics.yml/dispatches \
   -d '{"ref":"main"}'
-
-
 
