@@ -10,37 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up tools
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y sra-toolkit default-jre
+      - name: Set up tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sra-toolkit default-jre
 
-    - name: Download and Process Data
-      run: |
-        srr_id="***" # Replace *** with the SRR ID
-        R1="${srr_id}_pass_1.fastq.gz"
-        R2="${srr_id}_pass_2.fastq.gz"
-        prefetch ${srr_id}
-        fastq-dump --outdir fastq --gzip --skip-technical --readids --read-filter pass --dumpbase --split-3 --clip ~/${srr_id}/${srr_id}.sra
-        reformat.sh in1=~/fastq/${R1} in2=~/fastq/${R2} out=interleaved${srr_id}.fq.gz
-        bowtie2 -x reference_index -U ~/interleaved${srr_id}.fq.gz -S ~/aligned${srr_id}.sam
-        samtools view -bS ~/aligned${srr_id}.sam | samtools sort -o ~/sorted${srr_id}.bam
-        samtools index ~/sorted${srr_id}.bam
-        bedtools bamtofastq -i sorted${srr_id}.bam -fq sorted${srr_id}.fastq.gz
-        diamond blastx -d ~/CARD -q ~/sorted${srr_id}.fastq.gz -o diamond_${srr_id} -k 1 -f 6 -b 1
-        awk 'BEGIN { OFS="\t"; print "Query ID\tSubject ID\tPercentage of identical matches\tAlignment length\tNumber of mismatches\tNumber of gap openings\tStart of alignment in query\tEnd of alignment in query\tStart of alignment in subject\tEnd of alignment in subject\tExpected value\tBit score\tGene_Count" } { gsub(/.*ARO_Name:/, "", $2); gsub(/\|.*/, "", $2); gene_count[$2]++ } END { for (gene in gene_count) { print gene, gene_count[gene]; total_count += gene_count[gene] } print "Total_Count\t\t\t\t\t\t\t\t\t\t\t\t\t", total_count > "gene_counts.txt"; for (gene in gene_count) { print gene, gene_count[gene] > "unique_gene_sums.txt" } } { print $0 "\t" gene_count[$2] }' "diamond_${srr_id}" > "awk_diamond_${srr_id}"
-
-    - name: Upload Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: metagenomics-results
-        path: |
-          interleaved${srr_id}.fq.gz
-          aligned${srr_id}.bam
-          sorted${srr_id}.bam
-          sorted${srr_id}.fastq.gz
-          diamond_${srr_id}
-          awk_diamond_${srr_id}
+      - name: Process Data
+        run: |
+          R1="${srr_id}_pass_1.fastq.gz"
+          R2="${srr_id}_pass_2.fastq.gz"
+          fastq-dump --outdir fastq --gzip --skip-technical --readids --read-filter pass --dumpbase --split-3 --clip ~/${srr_id}/${srr_id}.sra
+          reformat.sh in1=~/fastq/${R1} in2=~/fastq/${R2} out=interleaved${srr_id}.fq.gz
+          bowtie2 -x reference_index -U ~/interleaved${srr_id}.fq.gz -S ~/aligned${srr_id}.sam
+          samtools view -bS ~/aligned${srr_id}.sam | samtools sort -o ~/sorted${srr_id}.bam
+          samtools index ~/sorted${srr_id}.bam
+          bedtools bamtofastq -i sorted${srr_id}.bam -fq sorted${srr_id}.fastq.gz
+          diamond blastx -d ~/CARD -q ~/sorted${srr_id}.fastq.gz -o diamond_${srr_id} -k 1 -f 6 -b 1
+          awk 'BEGIN { OFS="\t"; print "Query ID\tSubject ID\tPercentage of identical matches\tAlignment length\tNumber of mismatches\tNumber of gap openings\tStart of alignment in query\tEnd of alignment in query\tStart of alignment in subject\tEnd of alignment in subject\tExpected value\tBit score\tGene_Count" } { gsub(/.*ARO_Name:/, "", $2); gsub(/\|.*/, "", $2); gene_count[$2]++ } END { for (gene in gene_count) { print gene, gene_count[gene]; total_count += gene_count[gene] } print "Total_Count\t\t\t\t\t\t\t\t\t\t\t\t\t", total_count > "gene_counts.txt"; for (gene in gene_count) { print gene, gene_count[gene] > "unique_gene_sums.txt" } } { print $0 "\t" gene_count[$2] }' "diamond_${srr_id}" > "awk_diamond_${srr_id}"
