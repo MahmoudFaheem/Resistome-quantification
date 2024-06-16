@@ -23,3 +23,11 @@ Clone the repository to your local machine and navigate to the project directory
 git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
 cd Resistome-quantification
 
+Step 2: Update SRA ID
+Replace *** with your actual SRA ID in the metagenomics.yml file.
+
+Step 3: Commit Changes
+Commit the changes to update the SRA ID:
+git add .
+git commit -m "Update SRA ID"
+git push origin main
