@@ -28,3 +28,15 @@ Your system should also have some software and tools downloaded such as SRA Tool
 
 7. **Quantify Resistome with DIAMOND**
     - Quantify the resistome using DIAMOND and the data-driven scripting language, AWK.
+
+  
+## How to Use
+
+Follow the steps below to use the Resistome Quantification Pipeline:
+
+### Step 1: Clone Repository
+
+Clone the repository to your local machine and navigate to the project directory:
+
+git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
+cd Resistome-quantification
