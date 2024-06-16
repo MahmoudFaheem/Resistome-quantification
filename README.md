@@ -42,7 +42,7 @@ git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
 cd Resistome-quantification
 ```
 
-## Step 2: Update SRA ID
+### Step 2: Update SRA ID
 
 Replace "***" with your actual SRA ID in the metagenomics.yml file.
 
