@@ -29,6 +29,8 @@ Your system should also have some software and tools downloaded such as SRA Tool
 7. **Quantify Resistome with DIAMOND**
     - Quantify the resistome using DIAMOND and the data-driven scripting language, AWK.
 
+
+
   
 ## How to Use
 
