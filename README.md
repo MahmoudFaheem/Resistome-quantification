@@ -50,13 +50,13 @@ wget https://github.com/MahmoudFaheem/Resistome-quantification/archive/refs/tags
 nano /path/to/extracted/pipeline/resistome_quantification.sh
 ```
 
-### Step 3: Make the script executable on your Linux system:
+### Step 3: Make the script executable on your Linux system
 
 ```
 chmod +x /path/to/extracted/pipeline/resistome_quantification.sh
 ```
 
-### Step 4: Run the pipeline:
+### Step 4: Run the pipeline
 
 ```
 bash /path/to/extracted/pipeline/resistome_quantification.sh
