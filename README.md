@@ -40,31 +40,24 @@ Follow the steps below to use the Resistome Quantification Pipeline:
 
 Clone the repository to your local machine and navigate to the project directory:
 ```bash
-git clone https://github.com/mahmoudfaheem/Resistome-quantification.git
-cd Resistome-quantification
+wget https://github.com/MahmoudFaheem/Resistome-quantification/archive/refs/tags/v1.0.0.tar.gz
 ```
 
-### Step 2: Update SRA ID
+### Step 2: Extract the pipeline and update the SRR entry
 
-Replace "***" with your actual SRA ID in the metagenomics.yml file.
-
-### Step 3: Commit Changes
-
-Commit the changes to update the SRA ID:
 ```bash
-git add .
-git commit -m "Update SRA ID"
-git push origin main
+# Update the SRR entry within the pipeline
+nano /path/to/extracted/pipeline/resistome_quantification.sh
 ```
 
-### Step 4: Trigger Workflow Manually
+### Step 3: Make the script executable on your Linux system:
 
-Run the following command in your terminal to trigger the workflow manually:
-```bash
-curl -X POST -u mahmoudfaheem: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 \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/mahmoudfaheem/Resistome-quantification/actions/workflows/metagenomics.yml/dispatches \
-  -d '{"ref":"main"}'
+```
+chmod +x /path/to/extracted/pipeline/resistome_quantification.sh
 ```
 
-### Make sure to replace "***" with your actual SRA ID in the metagenomics.yml file.
+### Step 4: Run the pipeline:
+
+```
+bash /path/to/extracted/pipeline/resistome_quantification.sh
+```
