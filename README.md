@@ -36,7 +36,7 @@ Your system should also have some software and tools downloaded such as SRA Tool
 
 Follow the steps below to use the Resistome Quantification Pipeline:
 
-### Step 1: Clone Repository
+### Step 1: Clone repository
 
 Clone the repository to your local machine and navigate to the project directory:
 ```bash
